@@ -1,0 +1,74 @@
+header {
+  text-align: center;
+  background-color: purple;
+  width: 100%;
+  border-bottom: 1px solid #444;
+}
+
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+}
+
+.chat {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+.input-area {
+  position: fixed;
+  bottom: 0;
+  width: 80%;
+  
+  /* 2. Hacemos que sea más grande */
+  height: 70px;         /* Altura de la barra */
+  padding: 0 20px;      /* Espacio a los lados */
+  box-sizing: border-box; /* Para que el padding no rompa el ancho del 100% */
+  
+  /* 3. Alineamos los elementos internos */
+  display: flex;
+  align-items: center;
+  gap: 30px;            /* Separación entre botones e input */
+  background-color: #222; /* Color de fondo para que se vea */
+  border-top: 1px solid #444;
+
+  justify-content: center;
+}
+
+#messageInput {
+  border-radius: 20px;
+  width: 100%;
+  height: 70%;
+  font-size: large;
+}
+
+#sendBtn, #recordBtn {
+  height: 60px;
+  width: 70px;
+  border-radius: 50px;
+}
+
+#sendBtn, #recordBtn:hover {
+  cursor: pointer;
+  background-color: #d4d4d4;
+}
+
+.messages {
+  overflow-y: auto;
+  position: fixed;
+}
+
+.users {
+  position: fixed;
+  right: 0;
+  background-color: skyblue;
+  color: gray;
+  width: 20%;
+  overflow-y: auto;
+  height: 100%;
+  border-left: 1px solid #444;
+}
