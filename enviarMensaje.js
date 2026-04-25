@@ -1,6 +1,5 @@
 const boton = document.getElementById("sendBtn");
 const input = document.getElementById("messageInput");
-const audio = document.getElementById("recordBtn");
 
 sonido = new Audio("audios/Notificación Universfield.mp3");
 
