@@ -3,6 +3,7 @@ header {
   background-color: purple;
   width: 100%;
   border-bottom: 1px solid #444;
+  height: 11vh;
 }
 
 body {
@@ -24,7 +25,7 @@ body {
   width: 80%;
   
   /* 2. Hacemos que sea más grande */
-  height: 70px;         /* Altura de la barra */
+  height: 9vh;         /* Altura de la barra */
   padding: 0 20px;      /* Espacio a los lados */
   box-sizing: border-box; /* Para que el padding no rompa el ancho del 100% */
   
@@ -71,7 +72,10 @@ body {
   gap: 8px; 
   width: 80%;
   color: white;
-  height: 100%;
+
+  top: 14vh;
+  bottom: 10vh;
+
 
   background-image: url('imagenes/fondoDefinitivo.png');
 }
