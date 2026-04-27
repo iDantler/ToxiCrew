@@ -108,3 +108,31 @@ body {
   display: flex;
   justify-content: flex-end; 
 }
+
+#popUp {
+  height: 12vh;
+  width: 25vh;
+  border-radius: 20px;
+}
+
+#mensajePopUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#botonCancelar, #botonEliminar {
+  margin-top: 2vh;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#botonCancelar {
+  background-color: gray;
+  width: 12.5vh;
+}
+
+#botonEliminar {
+  background-color: skyblue;
+  width: 12.5vh;
+}
