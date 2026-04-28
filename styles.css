@@ -1,3 +1,8 @@
+.app {
+  font-family: "Google Sans", sans-serif;
+  font-size: 15px;
+}
+
 header {
   text-align: center;
   background-color: purple;
@@ -124,6 +129,7 @@ body {
 #botonCancelar, #botonEliminar {
   margin-top: 2vh;
   border-radius: 20px;
+  height: 4vh;
   cursor: pointer;
 }
 

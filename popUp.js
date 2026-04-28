@@ -1,5 +1,7 @@
 export function mostrarPopUp() {
   const chat = document.querySelector(".chat");
+  const inpuT = document.getElementById("messageInput");
+
   
   //creamos el popUp
   const popUp = document.createElement("dialog");
@@ -14,6 +16,7 @@ export function mostrarPopUp() {
   //ahora creamos las dos opciones
   const cancelar = document.createElement("button");
   const eliminar = document.createElement("button");
+  const botonPapelera = document.getElementById("papelera");
 
   cancelar.id = "botonCancelar";
   eliminar.id = "botonEliminar";
@@ -25,4 +28,8 @@ export function mostrarPopUp() {
   popUp.appendChild(eliminar);
 
   popUp.showModal();
+
+  cancelar.addEventListener("click", () => {
+    popUp.close();
+  });
 }
