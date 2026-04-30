@@ -1,41 +1,78 @@
-import { mostrarPopUp } from './popUp.js';
+// Este archivo es para la animación y la interfaz cuando grabas audios.
 
+// Importamos las funciones que necesitamos
+import { mostrarPopUp } from './popUp.js';
+import { grabarAudio } from './grabarAudio.js';
+
+// Cogemos los elementos del HTML
 const areaParaEscribir = document.querySelector(".inputArea");
-const audio = document.getElementById("recordBtn");
-const inpuT = document.getElementById("messageInput");
+const audioBtn = document.getElementById("recordBtn");
+const input = document.getElementById("messageInput");
 const botonEnviar = document.getElementById("sendBtn");
 
+// Un contador para saber si estamos grabando o no
 let contador = 0;
 
-//hay que poner que se borre la grabación del audio cuando se pulse el botón de la basura
-//poner que cuando borres el audio te salga una pestaña emergente que te diga si estás seguro de que quieres hacerlo o no
-
+// Variable para el botón de basura
 let botonPapelera;
 
-audio.addEventListener("click", () => {
-  if(contador % 2 === 0) {
-    inpuT.style.width = "86%";
+// Variables para grabar el audio
+let mediaRecorder;
+let audioChunks = [];
 
-    botonPapelera = document.createElement("button");
-    botonPapelera.id = "papelera";
+// Las ponemos globales para que el popup las pueda usar
+window.mediaRecorder = mediaRecorder;
+window.audioChunks = audioChunks;
 
-    inpuT.placeholder = "🔴 Grabando audio";
-    inpuT.readOnly = true;
+// Cuando le das al botón de grabar
+audioBtn.addEventListener("click", async () => {
+  if (contador % 2 === 0) {
+    // Empezar a grabar
+    mediaRecorder = await grabarAudio();
+    window.mediaRecorder = mediaRecorder; // Lo ponemos global
+    if (mediaRecorder) {
+      audioChunks = [];
+      window.audioChunks = audioChunks; // También global
+      mediaRecorder.start();
+      mediaRecorder.ondataavailable = event => {
+        audioChunks.push(event.data);
+      };
 
-    areaParaEscribir.insertBefore(botonPapelera, botonEnviar);
-    botonPapelera.innerHTML = '<img src="imagenes/Icono de Basura.png" alt="basura">';
+      // Cambiar la interfaz para grabar
+      input.style.width = "86%";
+      input.placeholder = "🔴 Grabando audio";
+      input.readOnly = true;
 
-    const basura = document.getElementById("papelera");
+      // Crear el botón de basura
+      botonPapelera = document.createElement("button");
+      botonPapelera.id = "papelera";
+      botonPapelera.innerHTML = '<img src="imagenes/Icono de Basura.png" alt="basura">';
+      areaParaEscribir.insertBefore(botonPapelera, botonEnviar);
 
-    basura.addEventListener("click", () => {
-      mostrarPopUp();
-    });
-  }
-  else {
-    inpuT.style.width = "";
-    botonPapelera.remove();
-    inpuT.placeholder = "Escribe un mensaje..."
-    inpuT.readOnly = false;
+      // Si le das a la basura, sale el popup
+      botonPapelera.addEventListener("click", () => {
+        mostrarPopUp();
+      });
+    }
+  } else {
+    // Parar la grabación
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop();
+      mediaRecorder.onstop = () => {
+        // Aquí se podría enviar el audio o guardarlo
+        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+        console.log('Audio grabado:', audioBlob);
+        // Por ejemplo, crear un mensaje con el audio
+        // const audioUrl = URL.createObjectURL(audioBlob);
+        // Agregar al chat como mensaje de audio
+      };
+    }
+
+    // Modo normal: restaurar UI
+    input.style.width = "";
+    if (botonPapelera) botonPapelera.remove();
+    input.placeholder = "Escribe un mensaje...";
+    input.readOnly = false;
   }
   contador++;
 });

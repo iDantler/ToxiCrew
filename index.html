@@ -59,5 +59,23 @@
   <script src="enviarMensaje.js"></script>
   <script type="module" src="animacionAudios.js"></script>
 
+  <!-- Script para manejar usuarios básicos -->
+  <script>
+    // Creamos un ID único para cada usuario si no tiene uno
+    let userId = localStorage.getItem('userId');
+    if (!userId) {
+      userId = 'user_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('userId', userId);
+    }
+    console.log('Usuario ID:', userId);
+
+    // Aquí podríamos poner lógica para banear, como chequear una lista de baneados
+    // const bannedUsers = ['user_abc123']; // IDs de los baneados
+    // if (bannedUsers.includes(userId)) {
+    //   alert('Estás baneado');
+    //   // Desactivar cosas
+    // }
+  </script>
+
 </body>
 </html>
