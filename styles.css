@@ -15,6 +15,7 @@ body {
   margin: 0;
   background-color: black;
   color: white;
+  padding: 0;
 }
 
 .chat {
@@ -88,8 +89,8 @@ body {
 .users {
   position: fixed;
   right: 0;
-  background-color: skyblue;
-  color: gray;
+  background-color: darkslategray;
+  color: black;
   width: 20%;
   overflow-y: auto;
   height: 100%;
@@ -141,4 +142,10 @@ body {
 #botonEliminar {
   background-color: skyblue;
   width: 12.5vh;
+}
+
+#usuarios-texto {
+  border-bottom: 4px solid #444;
+  width: 100%;
+  text-align: center;
 }

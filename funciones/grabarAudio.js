@@ -7,10 +7,14 @@ export async function grabarAudio() {
     // Pedimos permiso para usar el micro
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     // Creamos el grabador con el stream
+z
     const mediaRecorder = new MediaRecorder(stream);
     // Después habría que guardar el audio o mandarlo, pero por ahora solo lo devolvemos
     return mediaRecorder;
+
   } catch (error) {
-    console.error("Error al acceder al micrófono:", error);
+    alert("No se pudo acceder al micrófono. Por favor, dale permiso en el navegador.");  
+    console.log("no funciona");
+    return null;
   }
 }
